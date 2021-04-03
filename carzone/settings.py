@@ -30,7 +30,7 @@ SECRET_KEY = 'e6e5jf)j4l==dmo$7*kbm-q_wnf&$f+e82#v%f@k5ukvze&67o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rocky-peak-65728.herokuapp.com','127.0.0.1']
 
 LOGIN_REDIRECT_URL='dashboard'
 
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'whitenoise.runserver_nostatic',
 
     #providers
     'allauth.socialaccount.providers.facebook',
@@ -108,7 +109,8 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 #     }
 # }
 DATABASE={'default':dj_database_url.config(default='postgres://postgres:abc@localhost/carzone_db')}
-
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -151,6 +153,9 @@ STATIC_URL = '/static/'
 STATIC_DIR=os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS=[STATIC_DIR]
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 #media_settings
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
@@ -172,6 +177,11 @@ EMAIL_HOST_USER='vijayvermakhedli@gmail.com'
 EMAIL_HOST_PASSWORD='xwleynlxeqqpoull'
 EMAIL_USE_TLS=True
 
+#secret key
+SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 #whitenoise setting
 
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
