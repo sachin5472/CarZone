@@ -30,7 +30,7 @@ SECRET_KEY = 'e6e5jf)j4l==dmo$7*kbm-q_wnf&$f+e82#v%f@k5ukvze&67o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['rocky-peak-65728.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['fathomless-eyrie-76130.herokuapp.com','127.0.0.1']
 
 LOGIN_REDIRECT_URL='dashboard'
 
