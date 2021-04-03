@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import _locale
+_locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL='dashboard'
+
 
 # Application definition
 
@@ -41,7 +46,19 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'cars.apps.CarsConfig',
     'ckeditor',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #providers
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
+
 ]
 
 MIDDLEWARE = [
@@ -134,3 +151,19 @@ STATICFILES_DIRS=[STATIC_DIR]
 #media_settings
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
+
+#messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+   
+}
+SITE_ID=1
+
+#email sending
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='vijayvermakhedli@gmail.com'
+EMAIL_HOST_PASSWORD='xwleynlxeqqpoull'
+EMAIL_USE_TLS=True

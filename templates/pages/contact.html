@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}| Contact Us{% endblock title %}
 {% block content %}
 {% load static %}
 <!-- Sub banner start -->
@@ -21,9 +22,11 @@
         <!-- Main title -->
         <div class="main-title text-center">
             <h1>Contact <span>Us</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+            <p>Our team is available 24x7 for you contact us any time</p>
         </div>
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'contact' %}" method="POST" enctype="multipart/form-data">
+        {% include 'includes/messages.html' %}
+        {% csrf_token %}
             <div class="row">
                 <div class="col-lg-7">
                     <div class="row">
@@ -76,7 +79,7 @@
                             </div>
                             <div class="detail">
                                 <h5>Email:</h5>
-                                <p><a href="#">info@themevessel.com</a></p>
+                                <p><a href="#">contact@Carzone.com</a></p>
                             </div>
                         </div>
                         <div class="ci-box">
