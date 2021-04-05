@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 import _locale
-_locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])
+_locale._getdefaultlocale = (lambda *args: ['en_US', 'utf16'])
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
